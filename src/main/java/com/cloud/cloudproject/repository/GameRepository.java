@@ -19,4 +19,10 @@ public interface GameRepository extends Neo4jRepository<Game, Long>, QuerydslPre
 
     @Query("MATCH (rate:Rate ) -[:RATING] -(g:Game) WITH g,avg(rate.rate) as p ORDER BY p DESC  RETURN g LIMIT 5")
     List<Game> get5BestRatedGames();
+
+    @Query("MATCH (game:Game) WHERE game.title = $title MERGE (g:Genre {name: $genreName})  MERGE (game)-[q:HAS_GENRE]-(g)")
+    void addGenreToGame(String title, String genreName);
+
+    @Query("MATCH (game:Game) WHERE game.title = $title MERGE (s:Subject {name: $subjectName})  MERGE (game)-[q:HAS_SUBJECT]-(s)")
+    void addSubjectToGame(String title, String subjectName);
 }
