@@ -19,5 +19,5 @@ public interface RateRepository extends Neo4jRepository<Rate, Long>, CypherdslCo
     double getAverageRatingOfGame(String name);
 
     @Query(" MATCH (game:Game) WHERE game.title = $title Match(u:User) WHERE u.login = $login CREATE (r:Rate {rate: $rating})  MERGE (u)-[m:MY_RATE]-(r)-[q:RATING]-(game)")
-    String saveRatingOfGame(String login, String title, int rating);
+    void saveRatingOfGame(String login, String title, int rating);
 }

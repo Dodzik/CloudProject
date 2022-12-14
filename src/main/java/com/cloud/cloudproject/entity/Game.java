@@ -21,16 +21,12 @@ public class Game {
     @Id
     @GeneratedValue
     private Long id;
-
     private String title;
-//    private int rate;
 
     @Relationship(type = "HAS_GENRE")
     public Set<Genre> hasGenre;
-
     @Relationship(type = "HAS_SUBJECT")
     public Set<Subject> hasSubject;
-
 
     public void genreIs(Genre genre) {
         if (hasGenre == null) {

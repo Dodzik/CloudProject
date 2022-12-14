@@ -24,19 +24,13 @@ public class RateController {
 
     @PostMapping("/api/ratesforgame")
     public List<Rate> getRatesForGame(@RequestBody GameName gameName) {
-//        log.info(rateRepository.findAll().toString());
         log.info(gameName.title);
-//        List<Integer> ratings = rateRepository.getRatingsOfGame(gameName.title).stream().map(Rate::getRate).toList();
-//        log.info(ratings.toString());
         return rateRepository.getRatingsOfGame(gameName.title);
     }
 
     @PostMapping("/api/avgratesforgame")
     public double getAverageRatesForGame(@RequestBody GameName gameName) {
-//        log.info(rateRepository.findAll().toString());
         log.info(gameName.title);
-//        List<Integer> ratings = rateRepository.getRatingsOfGame(gameName.title).stream().map(Rate::getRate).toList();
-//        log.info(ratings.toString());
         if (rateRepository.getRatingsOfGame(gameName.title).size() == 0 ||
                 !gameRepository.findAll().stream().map(Game::getTitle).toList().contains(gameName.title)) {
             return 0.0;
@@ -45,9 +39,9 @@ public class RateController {
     }
 
     @PostMapping("/api/ratethisgame")
-    public void saveRateOfGame(@RequestBody RatingGame ratingGame){
+    public void saveRateOfGame(@RequestBody RatingGame ratingGame) {
         log.info(ratingGame.title);
         log.info(String.valueOf(ratingGame.points));
-        rateRepository.saveRatingOfGame(ratingGame.login, ratingGame.title,ratingGame.points);
+        rateRepository.saveRatingOfGame(ratingGame.login, ratingGame.title, ratingGame.points);
     }
 }

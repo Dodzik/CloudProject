@@ -4,25 +4,16 @@ import com.cloud.cloudproject.entity.*;
 import com.cloud.cloudproject.repository.*;
 import lombok.AllArgsConstructor;
 import org.neo4j.cypherdsl.core.renderer.Renderer;
-import org.neo4j.driver.*;
-import org.neo4j.driver.Record;
-import org.neo4j.driver.exceptions.Neo4jException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.stereotype.Component;
 
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Component
 @AllArgsConstructor
 class ExampleCommandLineRunner implements CommandLineRunner {
-    private static final Renderer cypherRenderer = Renderer.getDefaultRenderer();
-    private final static Logger log = LoggerFactory.getLogger(ExampleCommandLineRunner.class);
 
     private AuthorRepository authorRepository;
     private GameRepository gameRepository;
@@ -165,16 +156,6 @@ class ExampleCommandLineRunner implements CommandLineRunner {
         authorRepository.saveAll(List.of(author1, author2, author3));
         rateRepository.saveAll(List.of(rate1, rate2, rate3, rate4, rate5));
         userRepository.saveAll(List.of(user1, user2, user3));
-
-        System.out.println(rateRepository.findAll());
-//        System.out.println(
-        rateRepository.getRatingsOfGame("Endless War").forEach(x -> System.out.println(x.getRate()));
-//        );
-//        System.out.println(rateRepository.getOfGame("Endless War"));
-        System.out.println(gameRepository.getRatedGame(rate1.getRate()));
-        System.out.println(rateRepository.getRatedGame(rate1.getRate()));
-        System.out.println(gameRepository.getTitlesContains("a"));
-        System.out.println(rateRepository.getAverageRatingOfGame("Endless War"));
 
     }
 }

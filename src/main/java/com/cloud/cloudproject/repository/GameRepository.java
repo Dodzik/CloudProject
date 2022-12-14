@@ -9,9 +9,6 @@ import java.util.List;
 
 public interface GameRepository extends Neo4jRepository<Game, Long>, QuerydslPredicateExecutor<Game> {
 
-    @Query("MATCH (rateNode:Rate {rate: $rate}) - [:RATING] - (game:Game) RETURN game")
-    Game getRatedGame(int rate);
-
     @Query("MATCH (searched: Game) WHERE searched.title CONTAINS $regex RETURN searched")
     List<Game> getTitlesContains(String regex);
 

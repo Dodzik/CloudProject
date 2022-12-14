@@ -9,8 +9,6 @@ import org.springframework.data.neo4j.core.schema.Id;
 import org.springframework.data.neo4j.core.schema.Node;
 import org.springframework.data.neo4j.core.schema.Relationship;
 
-import java.util.Set;
-
 @Node
 @Getter
 @Setter
@@ -22,7 +20,6 @@ public class Rate {
     private Long id;
 
     private int rate;
-
     @Relationship(type = "RATING")
     public Game game;
 

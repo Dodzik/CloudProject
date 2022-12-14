@@ -11,8 +11,6 @@ import com.cloud.cloudproject.repository.GenreRepository;
 import com.cloud.cloudproject.repository.SubjectRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,36 +33,36 @@ public class GameController {
     }
 
     @PostMapping("/api/savegame")
-    public void saveGame(@RequestBody GameName gameName){
-        if (gameName == null){
+    public void saveGame(@RequestBody GameName gameName) {
+        if (gameName == null) {
             return;
         }
         log.info(gameName.title);
         gameRepository.save(
-        Game.builder()
-                .title(gameName.title)
-                .build()
+                Game.builder()
+                        .title(gameName.title)
+                        .build()
         );
     }
 
     @PostMapping("/api/topfivegames")
-    public List<Game> getFiveGame(){
+    public List<Game> getFiveGame() {
         return gameRepository.get5BestRatedGames();
     }
 
     @PostMapping("/api/filteringTitles")
-    public List<Game> getFiltererdGames(@RequestBody GameName gameName){
+    public List<Game> getFiltererdGames(@RequestBody GameName gameName) {
         log.info(gameName.title);
         return gameRepository.getTitlesContains(gameName.title);
     }
 
     @PostMapping("/api/addGenreToGame")
-    public void addGenreToGame(@RequestBody GameNameWithGenre gameNameWithGenre){
+    public void addGenreToGame(@RequestBody GameNameWithGenre gameNameWithGenre) {
         gameRepository.addGenreToGame(gameNameWithGenre.title, gameNameWithGenre.genre);
     }
 
     @PostMapping("/api/addSubjectToGame")
-    public void addSubjectToGame(@RequestBody GameNameWithSubject gameNameWithSubject){
+    public void addSubjectToGame(@RequestBody GameNameWithSubject gameNameWithSubject) {
         gameRepository.addSubjectToGame(gameNameWithSubject.title, gameNameWithSubject.subjectName);
     }
 
