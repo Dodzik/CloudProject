@@ -48,6 +48,6 @@ public class RateController {
     public void saveRateOfGame(@RequestBody RatingGame ratingGame){
         log.info(ratingGame.title);
         log.info(String.valueOf(ratingGame.points));
-        rateRepository.saveRatingOfGame(ratingGame.title,ratingGame.points);
+        rateRepository.saveRatingOfGame(ratingGame.login, ratingGame.title,ratingGame.points);
     }
 }

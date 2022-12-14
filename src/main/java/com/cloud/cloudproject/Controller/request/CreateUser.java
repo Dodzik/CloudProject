@@ -1,7 +1,6 @@
 package com.cloud.cloudproject.Controller.request;
 
-public class RatingGame {
+public class CreateUser {
     public String login;
-    public String title;
-    public int points;
+    public String pass;
 }

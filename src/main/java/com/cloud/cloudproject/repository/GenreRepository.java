@@ -1,8 +1,6 @@
 package com.cloud.cloudproject.repository;
 
 import com.cloud.cloudproject.entity.Genre;
-import com.cloud.cloudproject.entity.Person;
-import com.cloud.cloudproject.entity.Subject;
 import org.springframework.data.neo4j.repository.Neo4jRepository;
 import org.springframework.data.neo4j.repository.query.Query;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
