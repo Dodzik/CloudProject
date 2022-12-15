@@ -3,9 +3,6 @@ package com.cloud.cloudproject;
 import com.cloud.cloudproject.entity.*;
 import com.cloud.cloudproject.repository.*;
 import lombok.AllArgsConstructor;
-import org.neo4j.cypherdsl.core.renderer.Renderer;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -99,8 +96,24 @@ class ExampleCommandLineRunner implements CommandLineRunner {
                 .rate(2)
                 .build();
         Rate rate5 = Rate.builder()
-                .rate(8)
+                .rate(3)
                 .build();
+        Rate rate6 = Rate.builder()
+                .rate(0)
+                .build();
+        Rate rate7 = Rate.builder()
+                .rate(10)
+                .build();
+        Rate rate8 = Rate.builder()
+                .rate(5)
+                .build();
+        Rate rate9 = Rate.builder()
+                .rate(7)
+                .build();
+        Rate rate10 = Rate.builder()
+                .rate(1)
+                .build();
+
         User user1 = User.builder()
                 .login("test1")
                 .pass("test1")
@@ -113,19 +126,45 @@ class ExampleCommandLineRunner implements CommandLineRunner {
                 .login("test3")
                 .pass("test3")
                 .build();
+        User user4 = User.builder()
+                .login("test4")
+                .pass("test4")
+                .build();
+        User user5 = User.builder()
+                .login("test5")
+                .pass("test6")
+                .build();
+        User user6 = User.builder()
+                .login("test6")
+                .pass("test6")
+                .build();
+        User user7 = User.builder()
+                .login("test7")
+                .pass("test7")
+                .build();
 
         user1.setMyRating(rate1);
         user2.setMyRating(rate2);
         user3.setMyRating(rate3);
-        user2.setMyRating(rate4);
-        user3.setMyRating(rate5);
+        user4.setMyRating(rate4);
+        user5.setMyRating(rate5);
+        user6.setMyRating(rate6);
+        user7.setMyRating(rate7);
+        user1.setMyRating(rate8);
+        user2.setMyRating(rate9);
+        user3.setMyRating(rate10);
 
 
         rate1.ratingOf(game1);
-        rate2.ratingOf(game1);
-        rate3.ratingOf(game1);
-        rate4.ratingOf(game1);
-        rate5.ratingOf(game2);
+        rate2.ratingOf(game2);
+        rate3.ratingOf(game3);
+        rate4.ratingOf(game4);
+        rate5.ratingOf(game5);
+        rate6.ratingOf(game1);
+        rate7.ratingOf(game2);
+        rate8.ratingOf(game3);
+        rate9.ratingOf(game4);
+        rate10.ratingOf(game5);
 
         game1.genreIs(genre1);
         game2.genreIs(genre2);
@@ -154,8 +193,8 @@ class ExampleCommandLineRunner implements CommandLineRunner {
         genreRepository.saveAll(List.of(genre1, genre2, genre3));
         gameRepository.saveAll(List.of(game1, game2, game3, game4, game5));
         authorRepository.saveAll(List.of(author1, author2, author3));
-        rateRepository.saveAll(List.of(rate1, rate2, rate3, rate4, rate5));
-        userRepository.saveAll(List.of(user1, user2, user3));
+        rateRepository.saveAll(List.of(rate1, rate2, rate3, rate4, rate5, rate6, rate7, rate8, rate9, rate10));
+        userRepository.saveAll(List.of(user1, user2, user3, user4, user5, user6, user7));
 
     }
 }
